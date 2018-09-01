@@ -10,7 +10,7 @@ import {
 } from 'expo'
 import { 
   lineString
- } from "@turf/helpers";
+ } from '@turf/helpers'
 
 export default class App extends React.Component {
 
@@ -36,7 +36,7 @@ export default class App extends React.Component {
     }
   }
 
-  getLocationAsync = async() => {
+  getLocationAsync = async () => {
     const { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status !== 'granted') {
       this.setState({
@@ -45,7 +45,7 @@ export default class App extends React.Component {
       return
     }
     const location = await Location.getCurrentPositionAsync({});
-    this.setState({ latitude: loaction.coords.latitude, longitude: location.coords.longitude })
+    this.setState({ latitude: location.coords.latitude, longitude: location.coords.longitude })
   }
 
   startLogging = async () => {
@@ -64,10 +64,10 @@ export default class App extends React.Component {
     this.setState({ subscription: null, status: 'stop'})
   }
 
-  loggingPosition = ({coods, timestamp}) => {
+  loggingPosition = ({coords, timestamp}) => {
     if (coords.accuracy) {
       let logs = [...this.state.logs]
-      logs.push({latitude: corrds.latitude, longitude: coords.longitude})
+      logs.push({latitude: coords.latitude, longitude: coords.longitude})
       this.setState({logs: logs})
     }
   }
@@ -114,7 +114,7 @@ export default class App extends React.Component {
           >
             {
               this.state.logs.length > 1 ?
-                <MapVieww.Polyline
+                <MapView.Polyline
                   coordinates={this.state.logs}
                   strokeColor="#00008b"
                   strokeWidth={6}
